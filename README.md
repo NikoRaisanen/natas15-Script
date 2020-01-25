@@ -3,10 +3,10 @@ Python program to brute force password via blind SQL injection. The username is 
 Script was written for the online web security challenge: https://overthewire.org/wargames/natas/natas15.html
 
 ## The vulnerability: 
-Usanitized inputs allows the user to perform SQL queries through the input form. There are 2 tables, 'username' and 'password.' If the SQL query returns a result the webpage will output the following text, "This user exists."
+Unsanitized inputs allows the user to perform SQL queries through the input form. There are 2 tables, 'username' and 'password.' If the SQL query returns a result the webpage will output the following text, "This user exists."
 
 ## The exploit:
-Can use the BINARY LIKE comparitive operator to determine which alphanumeric characters are contained in the password. The username is known to be "natas16" so the injected SQL query looks like this: **username=natas16" AND "password LIKE BINARY %[char]%**
+Can use the BINARY LIKE comparative operator to determine which alphanumeric characters are contained in the password. The username is known to be "natas16" so the injected SQL query looks like this: **username=natas16" AND "password LIKE BINARY %[char]%**
 The program iterates over every alphanumeric character in the [char] variable.
 
 When the website indicates that the query returned a result, the current iteration of [char] is added to a list called bf_chars (brute force characters)
